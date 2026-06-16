@@ -1,5 +1,8 @@
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from app.core.config import settings
+import ssl
+
+ssl_context = ssl.create_default_context()
 
 DATABASE_URL = (
     f"mysql+aiomysql://{settings.DB_USER}:"
@@ -9,7 +12,8 @@ DATABASE_URL = (
 
 engine = create_async_engine(
     DATABASE_URL,
-    echo=True # logs SQL (désactive en prod)
+    echo=True, # logs SQL (désactive en prod)
+    connect_args={"ssl": ssl_context},
 )
 
 AsyncSessionLocal = async_sessionmaker(
