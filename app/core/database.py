@@ -12,7 +12,7 @@ DATABASE_URL = (
 
 engine = create_async_engine(
     DATABASE_URL,
-    echo=True, # logs SQL (désactive en prod)
+    echo=False, # logs SQL (désactive en prod)
     connect_args={"ssl": ssl_context},
 )
 
