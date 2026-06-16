@@ -14,7 +14,7 @@ app.add_middleware(
         "http://localhost:3001",
         "http://127.0.0.1:3000",
         "http://127.0.0.1:3001",
-        "https://backend-notes-app-kas4.onrender.com"
+        "https://notes-app-cyan-nu.vercel.app"
         ],
     allow_credentials=True,
     allow_methods=["*"],
