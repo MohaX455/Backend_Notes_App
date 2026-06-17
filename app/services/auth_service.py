@@ -12,15 +12,15 @@ class AuthService:
 
     @staticmethod
     async def register(db: AsyncSession, username: str, email: str, password: str) -> User:
-        existing_user = await UserRepository.get_by_email(db, email)
-
-        if existing_user:
-            raise HTTPException(status_code=400, detail="Email already exists")
-        
         existing_username = await UserRepository.get_by_username(db, username)
 
         if existing_username:
             raise HTTPException(status_code=400, detail="Username already exists")
+            
+        existing_user = await UserRepository.get_by_email(db, email)
+
+        if existing_user:
+            raise HTTPException(status_code=400, detail="Email already exists")
 
         hashed = hash_password(password)
 
