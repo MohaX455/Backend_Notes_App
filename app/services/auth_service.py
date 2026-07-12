@@ -17,12 +17,9 @@ class AuthService:
         if existing_username:
             raise HTTPException(status_code=400, detail="Username already exists")
             
-        existing_user = await UserRepository.get_by_email(db, email)
+        existing_email = await UserRepository.get_by_email(db, email)
 
-        if existing_user:
-            raise HTTPException(status_code=400, detail="Email already exists")
-
-        if existing_user:
+        if existing_email:
             raise HTTPException(status_code=400, detail="Email already exists")
         
         hashed = hash_password(password)
